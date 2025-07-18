@@ -1,4 +1,4 @@
-# multi-agent-llm-as-a-judge
+# Multi-Agent-llm-as-a-judge
 
 This project implements a multi‑agent LLM‑as‑a‑Judge architecture in a modular way.
 It is designed to evaluate reasoning tasks by simulating multiple specialized judges, building a reasoning graph, iterating through debate rounds, and finally producing an Explainable Adjudication Report (XAR).
@@ -77,7 +77,6 @@ graph.py	Maintains a dynamic graph of reasoning and debate.
 debate.py	Expands the graph through iterative debate rounds.
 aggregator.py	Scores and aggregates judge outputs to reach a verdict.
 pipeline.py	Orchestrates all modules into one coherent workflow.
-✨ Key Features
 
 # Features
 - Multi‑Agent Judges – Each role (logician, innovator, synthesizer) focuses on a different aspect of reasoning.
