@@ -4,16 +4,12 @@ from collections import defaultdict
 
 class ArgumentGraph:
     def __init__(self):
-        self.nodes = {}   # id -> {role, text, confidence}
+        self.nodes = {}  # node_id -> {role, text, confidence}
         self.edges = defaultdict(list)
 
     def add_node(self, role: str, text: str, confidence: float):
         node_id = str(uuid.uuid4())[:8]
-        self.nodes[node_id] = {
-            "role": role,
-            "text": text,
-            "confidence": confidence
-        }
+        self.nodes[node_id] = {"role": role, "text": text, "confidence": confidence}
         return node_id
 
     def add_edge(self, parent: str, child: str):

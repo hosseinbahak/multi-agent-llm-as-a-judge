@@ -1,7 +1,7 @@
 # aggregator.py
 def aggregate_results(graph):
     """
-    Aggregate results from judges using weighted confidence scores.
+    Aggregate outputs from the graph and produce a verdict and confidence.
     """
     logician_scores = []
     overall_conf = []
@@ -12,7 +12,6 @@ def aggregate_results(graph):
             if node["role"] == "logician":
                 logician_scores.append(("❌" in node["text"], node["confidence"]))
 
-    # Weighted contradiction detection
     total_conf = sum(c for _, c in logician_scores)
     contradiction_conf = sum(c for is_err, c in logician_scores if is_err)
     flawed_ratio = (contradiction_conf / total_conf) if total_conf > 0 else 0

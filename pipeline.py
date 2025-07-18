@@ -6,6 +6,7 @@ from llm_simulator import simulate_llm
 from graph import ArgumentGraph
 from debate import debate_round
 from aggregator import aggregate_results
+from adver import run_adversarial
 
 def judge_pipeline(raw_text: str, rounds: int = 2):
     # Pre-processing
@@ -18,13 +19,14 @@ def judge_pipeline(raw_text: str, rounds: int = 2):
     # Initial judgments for each segment
     for seg in segments:
         prompt = apply_cot_prompt(seg)
+
         for role in ["logician", "innovator", "synthesizer"]:
             txt, conf = simulate_llm(role, prompt)
             nid = graph.add_node(role, txt, conf)
             graph.add_edge(root, nid)
 
-        # Sentinel test
-        s_txt, s_conf = simulate_llm("sentinel", prompt)
+        # Sentinel test (adversarial agent)
+        s_txt, s_conf = run_adversarial(seg)
         sid = graph.add_node("sentinel", s_txt, s_conf)
         graph.add_edge(root, sid)
 
@@ -32,9 +34,10 @@ def judge_pipeline(raw_text: str, rounds: int = 2):
     for r in range(rounds):
         debate_round(graph, round_num=r+1)
 
-    # Aggregation
+    # Aggregate results
     verdict, conf = aggregate_results(graph)
 
+    # Build report
     xar_report = {
         "summary": {
             "final_verdict": verdict,
@@ -48,7 +51,6 @@ def judge_pipeline(raw_text: str, rounds: int = 2):
             "total_nodes": len(graph.nodes)
         }
     }
-
     return xar_report
 
 if __name__ == "__main__":

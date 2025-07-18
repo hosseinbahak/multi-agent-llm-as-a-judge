@@ -3,7 +3,7 @@ from llm_simulator import simulate_llm
 
 def mcts_expand(graph, parent_id: str, role: str):
     """
-    Expand a node by letting a judge role respond.
+    Expand the reasoning graph from a given parent node.
     """
     parent_text = graph.nodes[parent_id]["text"]
     resp, conf = simulate_llm(role, parent_text)
