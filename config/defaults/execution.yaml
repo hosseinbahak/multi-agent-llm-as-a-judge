@@ -1,0 +1,28 @@
+# multi_agent_llm_judge/config/defaults/execution.yaml
+execution:
+  # تعداد دور ارزیابی
+  num_rounds: 2
+  
+  # آیا agent ها به صورت موازی اجرا شوند
+  parallel_agents: true
+  
+  # آیا هیئت منصفه به صورت موازی کار کند
+  parallel_jurors: true
+  
+  # حداکثر تعداد عملیات موازی
+  parallel_limit: 5
+  
+  # توقف زودهنگام در صورت اطمینان بالا
+  early_stopping: true
+  early_stopping_confidence: 0.95
+  
+  # timeout ها
+  agent_timeout: 30
+  jury_timeout: 60
+  total_timeout: 300
+  
+  # استراتژی انتخاب agent
+  agent_selection:
+    strategy: "all"  # "all", "random", "performance_based"
+    min_agents_per_round: 3
+    max_agents_per_round: 7

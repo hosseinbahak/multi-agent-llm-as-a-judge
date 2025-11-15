@@ -1,0 +1,21 @@
+2025-09-14 17:25:28.314 | INFO     | __main__:main:219 - Loading evaluation data...
+2025-09-14 17:25:28.324 | INFO     | __main__:load_evaluation_data:105 - Found 20 evaluation files
+2025-09-14 17:25:28.356 | INFO     | __main__:load_evaluation_data:146 - Loaded 20 samples with 24 features
+2025-09-14 17:25:28.359 | INFO     | __main__:load_evaluation_data:147 - Label distribution: 12 correct, 8 incorrect
+2025-09-14 17:25:28.373 | INFO     | __main__:main:227 - Training set: 16 samples
+2025-09-14 17:25:28.373 | INFO     | __main__:main:228 - Test set: 4 samples
+2025-09-14 17:25:28.374 | INFO     | __main__:main:231 - Training regression calibrator...
+2025-09-14 17:25:28.374 | ERROR    | __main__:main:311 - Training failed: Can't instantiate abstract class RegressionCalibrator with abstract method calibrate
+2025-09-14 17:28:31.457 | INFO     | __main__:main:219 - Loading evaluation data...
+2025-09-14 17:28:31.472 | INFO     | __main__:load_evaluation_data:105 - Found 20 evaluation files
+2025-09-14 17:28:31.489 | INFO     | __main__:load_evaluation_data:146 - Loaded 20 samples with 24 features
+2025-09-14 17:28:31.508 | INFO     | __main__:load_evaluation_data:147 - Label distribution: 12 correct, 8 incorrect
+2025-09-14 17:28:31.510 | INFO     | __main__:main:227 - Training set: 16 samples
+2025-09-14 17:28:31.520 | INFO     | __main__:main:228 - Test set: 4 samples
+2025-09-14 17:28:31.520 | INFO     | __main__:main:231 - Training regression calibrator...
+2025-09-14 17:28:33.892 | INFO     | __main__:main:238 - Regression calibrator metrics: {'brier_score': 0.03851191232603191, 'auc_roc': 1.0, 'log_loss': 0.18002792161008369, 'ece': 0.15602317513029454}
+2025-09-14 17:28:33.916 | INFO     | __main__:main:244 - Training ensemble calibrator...
+2025-09-14 17:28:36.902 | INFO     | __main__:main:251 - Ensemble calibrator metrics: {'brier_score': 0.0, 'auc_roc': 1.0, 'log_loss': 2.2204460492503136e-16, 'ece': 0.0}
+2025-09-14 17:28:39.405 | INFO     | __main__:main:276 - Original (uncalibrated) metrics: {'brier_score': 0.023095832177648143, 'auc_roc': 1.0, 'log_loss': 0.15447831085794358, 'ece': 0.14122124736519123}
+2025-09-14 17:28:39.406 | INFO     | __main__:main:296 - Training completed successfully!
+2025-09-14 17:28:39.406 | INFO     | __main__:main:297 - Models saved to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_models

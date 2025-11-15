@@ -1,0 +1,25 @@
+# multi_agent_llm_judge/config/defaults/calibration.yaml
+calibration:
+  # فعال/غیرفعال کردن کالیبراسیون
+  enabled: true
+  
+  # روش کالیبراسیون
+  method: "logistic"  # "logistic", "isotonic", "ensemble"
+  
+  # مسیر مدل کالیبراسیون
+  #model_path: "/home/zeus/Projects/hb/multi_agent_llm_judge/calibration_models/ensemble_calibrator.pkl"
+  
+  # تنظیمات آموزش
+  training:
+    min_samples: 100
+    update_frequency: 50  # به‌روزرسانی بعد از هر N ارزیابی
+    
+  # ویژگی‌های مورد استفاده
+  features:
+    - "raw_confidence"
+    - "confidence_variance"
+    - "agent_agreement"
+    - "evidence_strength"
+    - "reasoning_coherence"
+    - "answer_length"
+    - "question_complexity"

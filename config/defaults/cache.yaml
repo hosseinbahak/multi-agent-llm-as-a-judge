@@ -1,0 +1,23 @@
+# multi_agent_llm_judge/config/defaults/cache.yaml
+cache:
+  # فعال/غیرفعال کردن کش
+  enabled: true
+  
+  # مدت زمان نگهداری (ثانیه)
+  ttl: 36000  # 1000ساعت
+  
+  # نوع backend
+  backend: "memory"  # "memory", "redis", "disk"
+  
+  # حداکثر اندازه کش
+  max_size: 10000
+  
+  # دایرکتوری کش (برای disk backend)
+  cache_dir: "./cache"
+  
+  # تنظیمات Redis (اگر استفاده می‌شود)
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: null

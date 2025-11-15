@@ -1,0 +1,18 @@
+# Ignore log files
+*.log
+
+# Ignore PNG image files
+*.png
+
+# Ignore CSV files
+*.csv
+
+# It's also a good idea to ignore other common files
+# For example, Python cache files:
+__pycache__/
+*.pyc
+
+# And environment files
+.env
+
+calibration_models/

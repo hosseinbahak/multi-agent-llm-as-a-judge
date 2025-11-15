@@ -1,0 +1,4 @@
+Model,Samples,TP,FN,FP,TN,Accuracy,Precision,Recall,F1
+openai_gpt-4.1-nano,3688,1594,79,1018,997,70.25,61.03,95.28,74.4
+google_gemini-flash-1.5-8b,3687,1576,96,926,1089,72.28,62.99,94.26,75.52
+x-ai_grok-4-fast_free,3626,1531,122,673,1300,78.08,69.46,92.62,79.39

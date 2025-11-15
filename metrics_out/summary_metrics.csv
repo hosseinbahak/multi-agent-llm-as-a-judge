@@ -1,0 +1,2 @@
+N_total,N_for_accuracy,Accuracy,Cohen_kappa,N_for_corr,Spearman_r,Spearman_p,Kendall_tau_b,Kendall_p,N_for_calibration,Brier,ECE@10,Fleiss_kappa_jurors
+785,0,,,0,,,,,0,,,

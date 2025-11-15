@@ -1,0 +1,577 @@
+(.venv) zeus@AI3090:~/Projects/hb$ python3 -m multi_agent_llm_judge.main
+2025-09-10 15:38:46.660 | INFO     | __main__:main:236 - Loaded environment variables from /home/zeus/Projects/hb/multi_agent_llm_judge/.env
+2025-09-10 15:38:46.664 | INFO     | multi_agent_llm_judge.utils.logging_config:configure_logging:54 - Logging configured.
+2025-09-10 15:38:46.664 | INFO     | multi_agent_llm_judge.utils.config_loader:load_config_file:41 - Loading configuration from directory /home/zeus/Projects/hb/multi_agent_llm_judge/config
+2025-09-10 15:38:46.678 | SUCCESS  | multi_agent_llm_judge.utils.config_loader:load_config:135 - Configuration loaded and validated successfully
+2025-09-10 15:38:46.678 | INFO     | __main__:main:244 - Configuration loaded successfully.
+2025-09-10 15:38:55.138 | INFO     | multi_agent_llm_judge.core.model_manager:initialize:73 - Initialized with 328 available models
+2025-09-10 15:38:55.139 | INFO     | multi_agent_llm_judge.jury.jury_manager:__init__:36 - Created 5 jurors with diverse models:
+2025-09-10 15:38:55.139 | INFO     | multi_agent_llm_judge.jury.jury_manager:__init__:41 -   - 2 jurors using openai/gpt-4o
+2025-09-10 15:38:55.140 | INFO     | multi_agent_llm_judge.jury.jury_manager:__init__:41 -   - 2 jurors using openai/gpt-4o-mini
+2025-09-10 15:38:55.140 | INFO     | multi_agent_llm_judge.jury.jury_manager:__init__:41 -   - 1 jurors using openai/gpt-3.5-turbo
+2025-09-10 15:38:55.140 | INFO     | multi_agent_llm_judge.calibration.ensemble_calibrator:load:95 - Loading ensemble calibration model from calibration_model.pkl
+2025-09-10 15:38:55.140 | WARNING  | multi_agent_llm_judge.calibration.ensemble_calibrator:load:105 - Ensemble calibrator file not found at calibration_model.pkl. Creating a new, unfitted instance.
+2025-09-10 15:38:55.140 | INFO     | multi_agent_llm_judge.core.round_manager:__init__:56 - Loaded calibration model from calibration_model.pkl
+2025-09-10 15:38:55.140 | INFO     | __main__:main:283 - System components initialized.
+2025-09-10 15:38:55.140 | INFO     | __main__:main:288 - Data collector initialized at /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data
+
+================================================================================
+EVALUATION 1/10
+================================================================================
+Category: logical_reasoning
+Question: If all roses are flowers and some flowers fade quickly, can we conclude that some roses fade quickly?
+Answer: No, we cannot conclude that some roses fade quickly. While all roses are flowers, and some flowers fade quickly, the flowers that fade quickly might not include any roses. This is a logical fallacy.
+--------------------------------------------------------------------------------
+2025-09-10 15:38:55.141 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:39:07.221 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:39:16.971 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:39:16.972 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:39:22.856 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:39:22.856 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:39:22.856 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:39:22.856 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:39:22.856 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=83.84%, cost=$0.0000, time=27715ms
+2025-09-10 15:39:22.866 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_153922_d383488c.pkl
+2025-09-10 15:39:22.868 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_153922_d383488c.json
+2025-09-10 15:39:22.868 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_153922_d383488c_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 83.84%
+Consensus Level: 64.07%
+Vote Distribution: {'correct': 3, 'incorrect': 2, 'uncertain': 0}
+Processing Time: 27715ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_153922_d383488c
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 58.57%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: correct (70.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: uncertain (60.00%)
+
+  Round 2:
+  Average Confidence: 64.29%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: correct (50.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: uncertain (70.00%)
+    🤖 MetaQAAgent: correct (90.00%)
+
+================================================================================
+EVALUATION 2/10
+================================================================================
+Category: mathematics
+Question: What is 2 + 2?
+Answer: The answer is 5.
+--------------------------------------------------------------------------------
+2025-09-10 15:39:22.883 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:39:32.517 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:39:43.432 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:39:43.432 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:39:48.439 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:39:48.440 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:39:48.440 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:39:48.440 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 0, 'incorrect': 1, 'uncertain': 0}
+2025-09-10 15:39:48.440 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.INCORRECT, confidence=94.02%, cost=$0.0000, time=25556ms
+2025-09-10 15:39:48.441 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_153948_518a3387.pkl
+2025-09-10 15:39:48.441 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_153948_518a3387.json
+2025-09-10 15:39:48.441 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_153948_518a3387_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✗ INCORRECT
+Confidence: 94.02%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 0, 'incorrect': 5, 'uncertain': 0}
+Processing Time: 25556ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_153948_518a3387
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 54.29%
+  Agents:
+    🤖 ChainOfThoughtAgent: incorrect (60.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: incorrect (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: incorrect (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (60.00%)
+
+  Round 2:
+  Average Confidence: 54.29%
+  Agents:
+    🤖 ChainOfThoughtAgent: incorrect (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: incorrect (70.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: incorrect (50.00%)
+    🤖 BiasAuditorAgent: incorrect (50.00%)
+    🤖 MetaQAAgent: uncertain (60.00%)
+
+================================================================================
+EVALUATION 3/10
+================================================================================
+Category: philosophy
+Question: Is water wet?
+Answer: Water itself is not wet. Wetness is a property that water gives to other materials. Water is a liquid that can make other things wet when it adheres to their surface.
+Context: Consider the philosophical distinction between a substance and the properties it can impart to other substances. This is similar to asking whether fire is itself burned.
+--------------------------------------------------------------------------------
+2025-09-10 15:39:48.443 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:40:00.131 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:40:11.114 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:40:11.114 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:40:16.750 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:40:16.750 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:40:16.750 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:40:16.750 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:40:16.750 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=76.17%, cost=$0.0000, time=28307ms
+2025-09-10 15:40:16.751 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154016_fdf278f7.pkl
+2025-09-10 15:40:16.751 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154016_fdf278f7.json
+2025-09-10 15:40:16.751 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154016_fdf278f7_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 76.17%
+Consensus Level: 64.40%
+Vote Distribution: {'correct': 3, 'incorrect': 2, 'uncertain': 0}
+Processing Time: 28307ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154016_fdf278f7
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 51.43%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: correct (50.00%)
+
+  Round 2:
+  Average Confidence: 51.43%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 4/10
+================================================================================
+Category: history
+Question: When did World War II end?
+Answer: World War II ended in 1947.
+--------------------------------------------------------------------------------
+2025-09-10 15:40:16.752 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:40:29.538 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:40:43.598 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:40:43.598 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:40:59.449 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:40:59.450 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:40:59.450 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:40:59.450 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 0, 'incorrect': 1, 'uncertain': 0}
+2025-09-10 15:40:59.450 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.INCORRECT, confidence=90.83%, cost=$0.0000, time=42698ms
+2025-09-10 15:40:59.451 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154059_8befeb77.pkl
+2025-09-10 15:40:59.451 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154059_8befeb77.json
+2025-09-10 15:40:59.451 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154059_8befeb77_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✗ INCORRECT
+Confidence: 90.83%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 0, 'incorrect': 5, 'uncertain': 0}
+Processing Time: 42698ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154059_8befeb77
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 55.71%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (60.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: incorrect (60.00%)
+    🤖 BiasAuditorAgent: incorrect (50.00%)
+    🤖 MetaQAAgent: incorrect (60.00%)
+
+  Round 2:
+  Average Confidence: 54.29%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (60.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: incorrect (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 5/10
+================================================================================
+Category: science
+Question: Why is the sky blue?
+Answer: The sky appears blue due to Rayleigh scattering. When sunlight enters Earth's atmosphere, it collides with gas molecules. Blue light has a shorter wavelength and is scattered more than other colors, making the sky appear blue to our eyes.
+--------------------------------------------------------------------------------
+2025-09-10 15:40:59.453 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:41:11.594 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:41:22.769 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:41:22.770 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:41:27.084 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:41:27.084 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:41:27.084 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:41:27.085 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:41:27.085 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=74.64%, cost=$0.0000, time=27631ms
+2025-09-10 15:41:27.085 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154127_765516c2.pkl
+2025-09-10 15:41:27.086 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154127_765516c2.json
+2025-09-10 15:41:27.086 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154127_765516c2_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 74.64%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 5, 'incorrect': 0, 'uncertain': 0}
+Processing Time: 27631ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154127_765516c2
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 60.00%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (70.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: correct (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (70.00%)
+
+  Round 2:
+  Average Confidence: 57.14%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (70.00%)
+    🤖 AdversaryAgent: uncertain (30.00%)
+    🤖 ChallengerAgent: correct (70.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (70.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 6/10
+================================================================================
+Category: logical_reasoning
+Question: If it's raining, then the ground is wet. The ground is wet. Can we conclude it's raining?
+Answer: Yes, if the ground is wet, it must be raining.
+Context: This is a classic example of logical reasoning. Consider that there might be other reasons for the ground being wet, such as sprinklers, a spilled bucket of water, or morning dew.
+--------------------------------------------------------------------------------
+2025-09-10 15:41:27.087 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:41:40.231 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:41:53.403 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:41:53.403 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:42:03.920 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:42:03.921 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:42:03.921 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 0, 'incorrect': 2, 'uncertain': 0}
+2025-09-10 15:42:03.921 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 0, 'incorrect': 1, 'uncertain': 0}
+2025-09-10 15:42:03.921 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.INCORRECT, confidence=85.48%, cost=$0.0000, time=36833ms
+2025-09-10 15:42:03.922 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154203_f1a590f6.pkl
+2025-09-10 15:42:03.922 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154203_f1a590f6.json
+2025-09-10 15:42:03.922 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154203_f1a590f6_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✗ INCORRECT
+Confidence: 85.48%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 0, 'incorrect': 5, 'uncertain': 0}
+Processing Time: 36833ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154203_f1a590f6
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 55.71%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (70.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: uncertain (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: incorrect (60.00%)
+
+  Round 2:
+  Average Confidence: 51.43%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: incorrect (50.00%)
+    🤖 ChallengerAgent: incorrect (50.00%)
+    🤖 SynthesizerAgent: incorrect (50.00%)
+    🤖 RetrievalVerifierAgent: incorrect (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 7/10
+================================================================================
+Category: geography
+Question: What is the capital of France?
+Answer: The capital of France is Paris.
+Context: France is a country located in Western Europe. It has been a major European power for centuries and is known for its culture, cuisine, and historical landmarks.
+--------------------------------------------------------------------------------
+2025-09-10 15:42:03.924 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:42:14.885 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:42:24.020 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:42:24.020 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:42:29.412 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:42:29.413 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:29.413 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:29.413 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:29.413 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=89.46%, cost=$0.0000, time=25488ms
+2025-09-10 15:42:29.413 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154229_97033124.pkl
+2025-09-10 15:42:29.414 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154229_97033124.json
+2025-09-10 15:42:29.414 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154229_97033124_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 89.46%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 5, 'incorrect': 0, 'uncertain': 0}
+Processing Time: 25488ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154229_97033124
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 54.29%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: uncertain (60.00%)
+
+  Round 2:
+  Average Confidence: 58.57%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (60.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: uncertain (60.00%)
+    🤖 SynthesizerAgent: correct (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: uncertain (60.00%)
+
+================================================================================
+EVALUATION 8/10
+================================================================================
+Category: mathematics
+Question: What is the derivative of x²?
+Answer: The derivative of x² is 2x because when we square a number and then take its derivative, we multiply by 2.
+--------------------------------------------------------------------------------
+2025-09-10 15:42:29.414 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:42:40.358 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:42:50.683 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:42:50.684 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:42:55.461 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:42:55.461 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:55.461 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:55.461 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:42:55.461 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=81.43%, cost=$0.0000, time=26047ms
+2025-09-10 15:42:55.462 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154255_92918f8a.pkl
+2025-09-10 15:42:55.462 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154255_92918f8a.json
+2025-09-10 15:42:55.462 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154255_92918f8a_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 81.43%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 5, 'incorrect': 0, 'uncertain': 0}
+Processing Time: 26047ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154255_92918f8a
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 50.00%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: correct (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (50.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: correct (50.00%)
+
+  Round 2:
+  Average Confidence: 51.43%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: incorrect (50.00%)
+    🤖 ChallengerAgent: correct (50.00%)
+    🤖 SynthesizerAgent: correct (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 9/10
+================================================================================
+Category: philosophy
+Question: Which came first, the chicken or the egg?
+Answer: From an evolutionary perspective, the egg came first. The first chicken would have hatched from an egg laid by a bird that was not quite a chicken due to genetic mutations during reproduction.
+Context: This paradox has been debated since ancient times. Modern evolutionary biology provides insights that were not available to ancient philosophers. Consider both the biological and philosophical implications.
+--------------------------------------------------------------------------------
+2025-09-10 15:42:55.464 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:43:07.359 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:43:22.247 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:43:22.248 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:43:26.323 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:43:26.323 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:26.323 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:26.323 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:26.323 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=78.70%, cost=$0.0000, time=30859ms
+2025-09-10 15:43:26.324 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154326_85c54994.pkl
+2025-09-10 15:43:26.324 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154326_85c54994.json
+2025-09-10 15:43:26.324 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154326_85c54994_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 78.70%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 5, 'incorrect': 0, 'uncertain': 0}
+Processing Time: 30859ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154326_85c54994
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 55.71%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+  Round 2:
+  Average Confidence: 50.00%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: uncertain (50.00%)
+    🤖 BiasAuditorAgent: uncertain (50.00%)
+    🤖 MetaQAAgent: uncertain (50.00%)
+
+================================================================================
+EVALUATION 10/10
+================================================================================
+Category: computer_science
+Question: What is the time complexity of quicksort in the worst case?
+Answer: The worst-case time complexity of quicksort is O(n²).
+Context: Quicksort is a divide-and-conquer algorithm that picks an element as pivot and partitions the array around it. The worst case occurs when the pivot is always the smallest or largest element.
+--------------------------------------------------------------------------------
+2025-09-10 15:43:26.326 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 1/2
+2025-09-10 15:43:38.783 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:101 - Starting round 2/2
+2025-09-10 15:43:51.658 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:147 - Starting jury deliberation
+2025-09-10 15:43:51.659 | INFO     | multi_agent_llm_judge.jury.jury_manager:conduct_trial:54 - Conducting jury trial with 5 jurors.
+2025-09-10 15:43:56.125 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:176 - Model voting distribution:
+2025-09-10 15:43:56.126 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:56.126 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-4o-mini: {'correct': 2, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:56.126 | INFO     | multi_agent_llm_judge.jury.jury_manager:_aggregate_votes:178 -   openai/gpt-3.5-turbo: {'correct': 1, 'incorrect': 0, 'uncertain': 0}
+2025-09-10 15:43:56.126 | INFO     | multi_agent_llm_judge.core.round_manager:evaluate:219 - Evaluation complete: verdict=Verdict.CORRECT, confidence=80.68%, cost=$0.0000, time=29800ms
+2025-09-10 15:43:56.127 | INFO     | __main__:save_unlabeled_evaluation:67 - Saved raw evaluation to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/raw/eval_20250910_154356_fb251460.pkl
+2025-09-10 15:43:56.127 | INFO     | __main__:save_unlabeled_evaluation:74 - Saved evaluation details to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/evaluations/eval_20250910_154356_fb251460.json
+2025-09-10 15:43:56.128 | INFO     | __main__:save_unlabeled_evaluation:81 - Saved unlabeled summary to /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/unlabeled/eval_20250910_154356_fb251460_unlabeled.json
+
+📊 JURY EVALUATION:
+Verdict: ✓ CORRECT
+Confidence: 80.68%
+Consensus Level: 100.00%
+Vote Distribution: {'correct': 5, 'incorrect': 0, 'uncertain': 0}
+Processing Time: 29800ms
+Total Cost: $0.0000
+
+💾 Saved for labeling: eval_20250910_154356_fb251460
+
+📍 Round Details:
+
+  Round 1:
+  Average Confidence: 58.57%
+  Agents:
+    🤖 ChainOfThoughtAgent: uncertain (50.00%)
+    🤖 AdversaryAgent: uncertain (70.00%)
+    🤖 ChallengerAgent: uncertain (70.00%)
+    🤖 SynthesizerAgent: uncertain (60.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: correct (50.00%)
+
+  Round 2:
+  Average Confidence: 52.86%
+  Agents:
+    🤖 ChainOfThoughtAgent: correct (50.00%)
+    🤖 AdversaryAgent: uncertain (50.00%)
+    🤖 ChallengerAgent: uncertain (50.00%)
+    🤖 SynthesizerAgent: uncertain (50.00%)
+    🤖 RetrievalVerifierAgent: correct (60.00%)
+    🤖 BiasAuditorAgent: correct (50.00%)
+    🤖 MetaQAAgent: correct (60.00%)
+
+================================================================================
+DATA COLLECTION SUMMARY
+================================================================================
+Total evaluations saved: 10
+Data directory: /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data
+2025-09-10 15:43:56.135 | INFO     | __main__:create_labeling_batch:227 - Created labeling batch with 20 evaluations at /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/labeling_batch.json
+
+Created labeling batch with 20 evaluations
+Batch file: /home/zeus/Projects/hb/multi_agent_llm_judge/calibration_data/labeling_batch.json
+
+ Next Steps:
+1. Review the evaluations in the 'evaluations' directory
+2. Add ground truth labels to the labeling_batch.json file
+3. Use the labeled data to train the calibration model
+(.venv) zeus@AI3090:~/Projects/hb$ 

@@ -1,0 +1,28 @@
+{
+  "original": {
+    "brier_score": 0.023095832177648143,
+    "auc_roc": 1.0,
+    "log_loss": 0.15447831085794358,
+    "ece": 0.14122124736519123
+  },
+  "regression": {
+    "brier_score": 0.03851191232603191,
+    "auc_roc": 1.0,
+    "log_loss": 0.18002792161008369,
+    "ece": 0.15602317513029454
+  },
+  "ensemble": {
+    "brier_score": 0.0,
+    "auc_roc": 1.0,
+    "log_loss": 2.2204460492503136e-16,
+    "ece": 0.0
+  },
+  "data_stats": {
+    "total_samples": 20,
+    "train_samples": 16,
+    "test_samples": 4,
+    "num_features": 24,
+    "positive_rate_train": 0.625,
+    "positive_rate_test": 0.5
+  }
+}

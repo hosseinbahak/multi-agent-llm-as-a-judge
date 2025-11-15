@@ -1,0 +1,96 @@
+# multi_agent_llm_judge/config/defaults/jury.yaml
+jury:
+  models:
+    - model: "deepseek/deepseek-chat-v3.1:free"
+      count: 1  
+      weight: 1.5 
+      temperature: 0.7 
+      max_tokens: 8000
+
+    - model: "mistralai/mistral-small-3.2-24b-instruct:free"
+      count: 1
+      weight: 0.8
+      temperature: 0.9
+      max_tokens: 9000
+
+
+    - model: "z-ai/glm-4.5-air:free"
+      count: 1
+      weight: 1.0
+      temperature: 0.8
+      max_tokens: 13000
+
+
+    # - model: "google/gemini-flash-1.5-8b"
+    #   count: 1
+    #   weight: 1.0
+    #   temperature: 0.8
+    #   max_tokens: 1500
+    
+    # - model: "x-ai/grok-4-fast:free"
+    #   count: 1
+    #   weight: 0.8
+    #   temperature: 0.9
+    #   max_tokens: 1000
+  
+  model_distribution_strategy: "fixed"  # "fixed", "weighted_random", "performance_based"
+  
+  temperature: 0.8
+  max_tokens: 1500
+  retry_attempts: 2
+  
+  historical_accuracy_weight: 0.4
+  confidence_weight: 0.2
+  coherence_weight: 0.2
+  evidence_match_weight: 0.2
+  
+  deliberation:
+    # آیا وزن مدل در رأی‌گیری نهایی اعمال شود
+    apply_model_weights: true
+    
+    # آیا مدل‌های مختلف نظرات یکدیگر را ببینند
+    cross_model_visibility: false
+    
+    aggregation_strategy: "weighted_majority"  # "simple_majority", "weighted_majority", "confidence_weighted"
+
+
+
+# # multi_agent_llm_judge/config/defaults/jury.yaml
+# jury:
+#   models:
+#     - model: "openai/gpt-4.1-nano"
+#       count: 1  
+#       weight: 1.5 
+#       temperature: 0.7 
+#       max_tokens: 2000
+#       # فرمول وزن‌دهی مخصوص GPT-4 (متخصص تاریخ)
+#       weight_formula:
+#         historical_accuracy_weight: 0.6  # قوی در تاریخ
+#         confidence_weight: 0.15
+#         coherence_weight: 0.15
+#         evidence_match_weight: 0.1
+    
+#     - model: "google/gemini-flash-1.5-8b"
+#       count: 1
+#       weight: 1.0
+#       temperature: 0.8
+#       max_tokens: 1500
+#       # فرمول وزن‌دهی مخصوص Gemini (متخصص منطق)
+#       weight_formula:
+#         historical_accuracy_weight: 0.3
+#         confidence_weight: 0.2
+#         coherence_weight: 0.4  # قوی در منطق
+#         evidence_match_weight: 0.1
+    
+#     - model: "x-ai/grok-4-fast:free"
+#       count: 1
+#       weight: 0.8
+#       temperature: 0.9
+#       max_tokens: 1000
+#       # فرمول وزن‌دهی مخصوص Grok (متخصص تحلیل منابع)
+#       weight_formula:
+#         historical_accuracy_weight: 0.25
+#         confidence_weight: 0.15
+#         coherence_weight: 0.2
+#         evidence_match_weight: 0.4  # قوی در منابع
+  

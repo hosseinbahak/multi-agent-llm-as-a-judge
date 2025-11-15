@@ -1,0 +1,32 @@
+# multi_agent_llm_judge/config/defaults/system.yaml
+provider:
+  provider: openai
+
+execution:
+  num_rounds: 2
+  parallel_agents: true
+  parallel_jurors: true
+  parallel_limit: 5
+  parallel_limit: 5
+  early_stopping: true
+  early_stopping_confidence: 0.95
+
+jury:
+  num_jurors: 3
+  model: "gpt-4o-mini"
+  temperature: 0.8
+  max_tokens: 1500
+  retry_attempts: 2
+  historical_accuracy_weight: 0.4
+  confidence_weight: 0.2
+  coherence_weight: 0.2
+  evidence_match_weight: 0.2
+
+calibration:
+  enabled: true
+  method: "logistic"
+  model_path: "calibration_model.pkl"
+
+cache:
+  enabled: true
+  ttl: 3600
